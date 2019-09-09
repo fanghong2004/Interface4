@@ -61,7 +61,7 @@ void CMyPropertySheet::OnPageApply()
 	char buf_Check5[5];
 	char buf_Check6[5];
 
-	const char* filename = "d:\\file.txt";
+	const char* filename = "c:\\file1.txt";
 	FILE* fp = NULL;
 	errno_t err = 0;
 	err = fopen_s(&fp, filename, "wb");

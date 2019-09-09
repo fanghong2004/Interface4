@@ -4,7 +4,7 @@
 
 #include "stdafx.h"
 #include "CMyPropertySheet.h"
-#include <direct.h>
+#include "CString"
 // SHARED_HANDLERS 可以在实现预览、缩略图和搜索筛选器句柄的
 // ATL 项目中进行定义，并允许与该项目共享文档代码。
 #ifndef SHARED_HANDLERS
@@ -131,7 +131,16 @@ void CInterface4View::OnFileOpen()
 	
 	if (dlg.DoModal() == IDOK)
 	{
-		MessageBox(dlg.GetPathName());
+		//MessageBox(dlg.GetPathName());
+		CString strText;
+		/*TCHAR exepath[MAX_PATH] = { 0 };
+		::GetModuleFileName(NULL, exepath, MAX_PATH);*/
+		strText = dlg.GetPathName();
+		strText = strText.Left(strText.ReverseFind('\\'));
+		strText += _T("\\");
+		//strText += _T("db");
+		//MessageBox(strText);
+
 	}
 	
 
@@ -142,6 +151,12 @@ void CInterface4View::OnFileOpen()
 	strText = strText.Left(strText.ReverseFind('\\'));
 	strText += _T("\\");
 	//strText += _T("db");
-	MessageBox(strText);
-	//CreateDirectory(strText, NULL);
+	//MessageBox(strText);
+
+	const char* filename = "c:\\file2.txt";
+	FILE* fp = NULL;
+	errno_t err = 0;
+	err = fopen_s(&fp, filename, "wb");
+
+	fwrite(strText, (strText.GetLength()+1)*2, 1, fp);
 }
