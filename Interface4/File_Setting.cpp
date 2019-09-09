@@ -12,7 +12,7 @@
 IMPLEMENT_DYNAMIC(File_Setting, CPropertyPage)
 
 File_Setting::File_Setting()
-	: CPropertyPage(IDD_FILE)
+	: CPropertyPage()
 {
 
 }

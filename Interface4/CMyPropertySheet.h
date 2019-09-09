@@ -20,6 +20,7 @@ public:
 	virtual ~CMyPropertySheet();
 
 protected:
+	afx_msg void OnPageApply();
 	DECLARE_MESSAGE_MAP()
 };
 

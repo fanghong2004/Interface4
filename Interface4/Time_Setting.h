@@ -20,4 +20,10 @@ protected:
 	virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV 支持
 
 	DECLARE_MESSAGE_MAP()
+public:
+	int m_S_Start;
+	int m_S_End;
+	int m_O_Start;
+	int m_O_End;
+	afx_msg void OnChange();
 };

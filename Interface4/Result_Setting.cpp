@@ -28,7 +28,25 @@ void Result_Setting::DoDataExchange(CDataExchange* pDX)
 
 
 BEGIN_MESSAGE_MAP(Result_Setting, CPropertyPage)
+	ON_BN_CLICKED(IDC_CHECK1, &Result_Setting::OnChange)
+	ON_BN_CLICKED(IDC_CHECK2, &Result_Setting::OnChange)
+	ON_BN_CLICKED(IDC_CHECK3, &Result_Setting::OnChange)
+	ON_BN_CLICKED(IDC_CHECK4, &Result_Setting::OnChange)
+	ON_BN_CLICKED(IDC_CHECK5, &Result_Setting::OnChange)
+	ON_BN_CLICKED(IDC_CHECK6, &Result_Setting::OnChange)
 END_MESSAGE_MAP()
 
 
 // Result_Setting 消息处理程序
+
+
+void Result_Setting::OnChange()
+{
+	// TODO: 在此添加控件通知处理程序代码
+	SetModified(TRUE);
+}
+
+
+
+
+

@@ -22,7 +22,14 @@
 
 #include <afxdisp.h>        // MFC 自动化类
 
-
+#define WM_USER_PAGE_APPLY  1600
+typedef struct tagELLPROP
+{
+	int nSStart;
+	int nSEnd;
+	int nOStart;
+	int nOEnd;
+}ELLPROP;
 
 #ifndef _AFX_NO_OLE_SUPPORT
 #include <afxdtctl.h>           // MFC 对 Internet Explorer 4 公共控件的支持

@@ -20,6 +20,12 @@ public:
 	CInterface4App() noexcept;
 
 
+protected:
+	int m_S_Start;
+	int m_S_End;
+	int m_O_Start;
+	int m_O_End;
+
 // 重写
 public:
 	virtual BOOL InitInstance();
