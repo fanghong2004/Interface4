@@ -54,6 +54,9 @@ void CMyPropertySheet::OnPageApply()
 	char buf_OStart[20];
 	char buf_OEnd[20];
 
+	char buf_SpinYear[5];
+	char buf_SpinInterval[5];
+
 	char buf_Check1[5];
 	char buf_Check2[5];
 	char buf_Check3[5];
@@ -65,32 +68,41 @@ void CMyPropertySheet::OnPageApply()
 	FILE* fp = NULL;
 	errno_t err = 0;
 	err = fopen_s(&fp, filename, "wb");
-	/*if (err == 1)
+	/*if (err == 0)
 	{
 		MessageBox(TEXT("failed to open file!"));
 	}*/
-	//int M_S_Start = m_S_Start;
 	ELLPROP ep;
 	GetParent()->SendMessage(WM_USER_PAGE_APPLY, 0, (LPARAM)&ep);
 	ep.nSStart = m_timeSetting.m_S_Start;
 	ep.nSEnd = m_timeSetting.m_S_End;
 	ep.nOStart= m_timeSetting.m_O_Start;
 	ep.nOEnd = m_timeSetting.m_O_End;
+	ep.nSpinYear = m_timeSetting.SpinYear;
+	ep.nSpinInterval = m_timeSetting.SpinInterval;
 
 	_itoa_s(ep.nSStart, buf_SStart, 10);
 	_itoa_s(ep.nSEnd, buf_SEnd, 10);
 	_itoa_s(ep.nOStart, buf_OStart, 10);
 	_itoa_s(ep.nOEnd, buf_OEnd, 10);
+	_itoa_s(ep.nSpinYear, buf_SpinYear, 10);
+	_itoa_s(ep.nSpinInterval, buf_SpinInterval, 10);
 
-	strcat_s(buf_SStart, ",");
+	/*strcat_s(buf_SStart, ",");
 	strcat_s(buf_SEnd, ",");
 	strcat_s(buf_OStart, ",");
-	strcat_s(buf_OEnd, ",");
+	strcat_s(buf_OEnd, ",");*/
 
-	fwrite(buf_SStart, strlen(buf_SStart), 1, fp);
+	fprintf(fp, "%s\r\n", buf_SStart);
+	fprintf(fp, "%s\r\n", buf_SEnd);
+	fprintf(fp, "%s\r\n", buf_OStart);
+	fprintf(fp, "%s\r\n", buf_OEnd);
+	fprintf(fp, "%s\r\n", buf_SpinYear);
+	fprintf(fp, "%s\r\n", buf_SpinInterval);
+	/*fwrite(buf_SStart, strlen(buf_SStart), 1, fp);
 	fwrite(buf_SEnd, strlen(buf_SEnd), 1, fp);
 	fwrite(buf_OStart, strlen(buf_OStart), 1, fp);
-	fwrite(buf_OEnd, strlen(buf_OEnd), 1, fp);
+	fwrite(buf_OEnd, strlen(buf_OEnd), 1, fp);*/
 
 	if (m_resultSetting.IsDlgButtonChecked(IDC_CHECK1))
 	{
@@ -122,30 +134,33 @@ void CMyPropertySheet::OnPageApply()
 		Check6 = 1;
 	}
 
-	_itoa_s(Check1, buf_Check1, 10);
+	/*_itoa_s(Check1, buf_Check1, 10);
 	_itoa_s(Check2, buf_Check2, 10);
 	_itoa_s(Check3, buf_Check3, 10);
 	_itoa_s(Check4, buf_Check4, 10);
 	_itoa_s(Check5, buf_Check5, 10);
-	_itoa_s(Check6, buf_Check6, 10);
+	_itoa_s(Check6, buf_Check6, 10);*/
 
-	strcat_s(buf_Check1, ",");
-	strcat_s(buf_Check2, ",");
-	strcat_s(buf_Check3, ",");
-	strcat_s(buf_Check4, ",");
-	strcat_s(buf_Check5, ",");
-	strcat_s(buf_Check6, ",");
-
-	fwrite(buf_Check1, strlen(buf_Check1), 1, fp);
+	/*fwrite(buf_Check1, strlen(buf_Check1), 1, fp);
 	fwrite(buf_Check2, strlen(buf_Check2), 1, fp);
 	fwrite(buf_Check3, strlen(buf_Check3), 1, fp);
 	fwrite(buf_Check4, strlen(buf_Check4), 1, fp);
 	fwrite(buf_Check5, strlen(buf_Check5), 1, fp);
-	fwrite(buf_Check6, strlen(buf_Check6), 1, fp);
+	fwrite(buf_Check6, strlen(buf_Check6), 1, fp);*/
+
+	fprintf(fp, "%d\r\n", Check1);
+	fprintf(fp, "%d\r\n", Check2);
+	fprintf(fp, "%d\r\n", Check3);
+	fprintf(fp, "%d\r\n", Check4);
+	fprintf(fp, "%d\r\n", Check5);
+	fprintf(fp, "%d\r\n", Check6);
 
 	m_timeSetting.SetModified(FALSE);
 	m_resultSetting.SetModified(FALSE);
 
+	
 	fclose(fp);
+
+	
 	
 }

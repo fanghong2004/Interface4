@@ -30,6 +30,7 @@ BEGIN_MESSAGE_MAP(CInterface4View, CView)
 	ON_COMMAND(ID_FILE_PRINT_PREVIEW, &CView::OnFilePrintPreview)
 	ON_COMMAND(ID_FILE_PROPERTIES, &CInterface4View::OnFileProperties)
 	ON_COMMAND(ID_IMPORT, &CInterface4View::OnFileOpen)
+	ON_COMMAND(ID_32775, &CInterface4View::On32775)
 END_MESSAGE_MAP()
 
 // CInterface4View 构造/析构
@@ -116,8 +117,14 @@ void CInterface4View::OnFileProperties()
 	ps.m_timeSetting.m_S_End = 1972;
 	ps.m_timeSetting.m_O_Start = 1962;
 	ps.m_timeSetting.m_O_End = 1963;
+	ps.m_timeSetting.SpinYear = 0;
+	ps.m_timeSetting.SpinInterval = 6;
 
-	ps.DoModal();
+	/*if(ps.DoModal()==IDOK);
+	{
+		WinExec("c:\\TestEXE.exe", SW_SHOW);
+	}*/
+	ps.DoModal() == IDOK;
 }
 
 
@@ -136,27 +143,46 @@ void CInterface4View::OnFileOpen()
 		/*TCHAR exepath[MAX_PATH] = { 0 };
 		::GetModuleFileName(NULL, exepath, MAX_PATH);*/
 		strText = dlg.GetPathName();
+		//MessageBox(strText);
 		strText = strText.Left(strText.ReverseFind('\\'));
+		//MessageBox(strText);
+		//strText = strText.Left(strText.ReverseFind('\\'));
+		//MessageBox(strText);
 		strText += _T("\\");
 		//strText += _T("db");
 		//MessageBox(strText);
 
+		const char* filename = "c:\\file2.txt";
+		FILE* fp = NULL;
+		errno_t err = 0;
+		err = fopen_s(&fp, filename, "wb");
+
+		fwrite(strText, (strText.GetLength() + 1) * 2, 1, fp);
+		fclose(fp);
+
 	}
 	
 
-	CString strText;
-	/*TCHAR exepath[MAX_PATH] = { 0 };
-	::GetModuleFileName(NULL, exepath, MAX_PATH);*/
-	strText = dlg.GetPathName();
-	strText = strText.Left(strText.ReverseFind('\\'));
-	strText += _T("\\");
-	//strText += _T("db");
-	//MessageBox(strText);
+	//CString strText;
+	///*TCHAR exepath[MAX_PATH] = { 0 };
+	//::GetModuleFileName(NULL, exepath, MAX_PATH);*/
+	//strText = dlg.GetPathName();
+	//strText = strText.Left(strText.ReverseFind('\\'));
+	//strText += _T("\\");
+	////strText += _T("db");
+	////MessageBox(strText);
 
-	const char* filename = "c:\\file2.txt";
-	FILE* fp = NULL;
-	errno_t err = 0;
-	err = fopen_s(&fp, filename, "wb");
+	//const char* filename = "c:\\file2.txt";
+	//FILE* fp = NULL;
+	//errno_t err = 0;
+	//err = fopen_s(&fp, filename, "wb");
 
-	fwrite(strText, (strText.GetLength()+1)*2, 1, fp);
+	//fwrite(strText, (strText.GetLength()+1)*2, 1, fp);
+}
+
+
+void CInterface4View::On32775()
+{
+	// TODO: 在此添加命令处理程序代码
+	WinExec("c:\\TestEXE.exe", SW_SHOW);
 }

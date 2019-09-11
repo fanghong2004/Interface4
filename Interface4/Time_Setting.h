@@ -26,4 +26,6 @@ public:
 	int m_O_Start;
 	int m_O_End;
 	afx_msg void OnChange();
+	int SpinYear;
+	int SpinInterval;
 };

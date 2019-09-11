@@ -43,6 +43,7 @@ protected:
 public:
 	afx_msg void OnFileProperties();
 	afx_msg void OnFileOpen();
+	afx_msg void On32775();
 };
 
 #ifndef _DEBUG  // Interface4View.cpp 中的调试版本

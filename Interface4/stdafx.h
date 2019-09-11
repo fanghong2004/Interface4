@@ -29,6 +29,8 @@ typedef struct tagELLPROP
 	int nSEnd;
 	int nOStart;
 	int nOEnd;
+	int nSpinYear;
+	int nSpinInterval;
 }ELLPROP;
 
 #ifndef _AFX_NO_OLE_SUPPORT

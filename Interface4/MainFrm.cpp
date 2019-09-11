@@ -16,6 +16,7 @@
 IMPLEMENT_DYNCREATE(CMainFrame, CFrameWnd)
 
 BEGIN_MESSAGE_MAP(CMainFrame, CFrameWnd)
+	ON_COMMAND(ID_APP_EXIT, &CMainFrame::OnAppExit)
 END_MESSAGE_MAP()
 
 // CMainFrame 构造/析构
@@ -56,3 +57,10 @@ void CMainFrame::Dump(CDumpContext& dc) const
 
 // CMainFrame 消息处理程序
 
+
+
+void CMainFrame::OnAppExit()
+{
+	// TODO: 在此添加命令处理程序代码
+	exit(0);
+}

@@ -17,6 +17,8 @@ Time_Setting::Time_Setting()
 	, m_S_End(0)
 	, m_O_Start(0)
 	, m_O_End(0)
+	, SpinYear(0)
+	, SpinInterval(0)
 {
 
 }
@@ -32,6 +34,8 @@ void Time_Setting::DoDataExchange(CDataExchange* pDX)
 	DDX_Text(pDX, IDC_S_END, m_S_End);
 	DDX_Text(pDX, IDC_O_START, m_O_Start);
 	DDX_Text(pDX, IDC_O_END, m_O_End);
+	DDX_Text(pDX, IDC_SPINYEAR, SpinYear);
+	DDX_Text(pDX, IDC_INTERVAL, SpinInterval);
 }
 
 
@@ -40,6 +44,8 @@ BEGIN_MESSAGE_MAP(Time_Setting, CPropertyPage)
 	ON_EN_CHANGE(IDC_S_END, &Time_Setting::OnChange)
 	ON_EN_CHANGE(IDC_O_START, &Time_Setting::OnChange)
 	ON_EN_CHANGE(IDC_O_END, &Time_Setting::OnChange)
+	ON_EN_CHANGE(IDC_SPINYEAR, &Time_Setting::OnChange)
+	ON_EN_CHANGE(IDC_INTERVAL, &Time_Setting::OnChange)
 END_MESSAGE_MAP()
 
 
