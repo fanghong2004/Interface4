@@ -48,6 +48,9 @@
     <ClInclude Include="CMyPropertySheet.h">
       <Filter>头文件</Filter>
     </ClInclude>
+    <ClInclude Include="PIFS.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Interface4.cpp">
@@ -77,6 +80,9 @@
     <ClCompile Include="CMyPropertySheet.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
+    <ClCompile Include="PIFS.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="Interface4.rc">
@@ -93,6 +99,12 @@
       <Filter>资源文件</Filter>
     </Image>
     <Image Include="res\Interface4.ico">
+      <Filter>资源文件</Filter>
+    </Image>
+    <Image Include="res\ooopic_1565517114.ico">
+      <Filter>资源文件</Filter>
+    </Image>
+    <Image Include="res\ooopic_1565592639.ico">
       <Filter>资源文件</Filter>
     </Image>
   </ItemGroup>

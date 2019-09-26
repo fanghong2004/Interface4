@@ -5,6 +5,7 @@
 #include "stdafx.h"
 #include "CMyPropertySheet.h"
 #include "CString"
+#include "PIFS.h"
 // SHARED_HANDLERS 可以在实现预览、缩略图和搜索筛选器句柄的
 // ATL 项目中进行定义，并允许与该项目共享文档代码。
 #ifndef SHARED_HANDLERS
@@ -31,6 +32,11 @@ BEGIN_MESSAGE_MAP(CInterface4View, CView)
 	ON_COMMAND(ID_FILE_PROPERTIES, &CInterface4View::OnFileProperties)
 	ON_COMMAND(ID_IMPORT, &CInterface4View::OnFileOpen)
 	ON_COMMAND(ID_32775, &CInterface4View::On32775)
+	ON_COMMAND(ID_32776, &CInterface4View::On32776)
+	ON_COMMAND(ID_32780, &CInterface4View::On32780)
+	ON_COMMAND(ID_32777, &CInterface4View::On32777)
+	ON_COMMAND(ID_32778, &CInterface4View::On32778)
+	ON_COMMAND(ID_32779, &CInterface4View::On32779)
 END_MESSAGE_MAP()
 
 // CInterface4View 构造/析构
@@ -114,9 +120,25 @@ void CInterface4View::OnFileProperties()
 	// TODO: 在此添加命令处理程序代码
 	CMyPropertySheet ps(TEXT("参数设置"));
 	ps.m_timeSetting.m_S_Start = 1960;
+	ps.m_timeSetting.m_S_StartMonth = 1;
+	ps.m_timeSetting.m_S_StartDate = 1;
+	ps.m_timeSetting.m_S_StartTime = 1;
+
 	ps.m_timeSetting.m_S_End = 1972;
+	ps.m_timeSetting.m_S_EndMonth = 12;
+	ps.m_timeSetting.m_S_EndDate = 31;
+	ps.m_timeSetting.m_S_EndTime = 24;
+
 	ps.m_timeSetting.m_O_Start = 1962;
+	ps.m_timeSetting.m_O_StartMonth = 1;
+	ps.m_timeSetting.m_O_StartDate = 1;
+	ps.m_timeSetting.m_O_StartTime = 1;
+
 	ps.m_timeSetting.m_O_End = 1963;
+	ps.m_timeSetting.m_O_EndMonth = 12;
+	ps.m_timeSetting.m_O_EndDate = 31;
+	ps.m_timeSetting.m_O_EndTime = 24;
+
 	ps.m_timeSetting.SpinYear = 0;
 	ps.m_timeSetting.SpinInterval = 6;
 
@@ -162,27 +184,181 @@ void CInterface4View::OnFileOpen()
 
 	}
 	
-
-	//CString strText;
-	///*TCHAR exepath[MAX_PATH] = { 0 };
-	//::GetModuleFileName(NULL, exepath, MAX_PATH);*/
-	//strText = dlg.GetPathName();
-	//strText = strText.Left(strText.ReverseFind('\\'));
-	//strText += _T("\\");
-	////strText += _T("db");
-	////MessageBox(strText);
-
-	//const char* filename = "c:\\file2.txt";
-	//FILE* fp = NULL;
-	//errno_t err = 0;
-	//err = fopen_s(&fp, filename, "wb");
-
-	//fwrite(strText, (strText.GetLength()+1)*2, 1, fp);
 }
 
 
 void CInterface4View::On32775()
 {
 	// TODO: 在此添加命令处理程序代码
-	WinExec("c:\\TestEXE.exe", SW_SHOW);
+
+	WinExec("c:\\Users\\PC\\Desktop\\Test\\TestEXE.exe", SW_SHOW);
+}
+
+
+void CInterface4View::On32776()
+{
+	// TODO: 在此添加命令处理程序代码
+	CFileDialog dlg(TRUE, NULL, NULL, OFN_PATHMUSTEXIST | OFN_FILEMUSTEXIST, _T("文本文件(*.txt)|*.*"), this);
+
+	if (dlg.DoModal() == IDOK)
+	{
+		CString strText;
+		CString strTextOut;
+
+		strText = dlg.GetPathName();
+		strTextOut = strText.Left(strText.ReverseFind('\\'));
+
+		strTextOut += _T("\\");
+		strTextOut = strTextOut + _T("xf.resample_fill");
+
+		const char* filename = "c:\\file3.txt";
+		FILE* fp = NULL;
+		errno_t err = 0;
+		err = fopen_s(&fp, filename, "wb");
+
+		char strText_ansi[120];
+		char strTextOut_ansi[120];
+		sprintf_s(strText_ansi,"%S", strText);
+		sprintf_s(strTextOut_ansi,"%S", strTextOut);
+		fwrite(strText_ansi, 120, 1, fp);
+		fwrite("\r\n", 1, 2, fp);
+		fwrite(strTextOut_ansi, 120, 1, fp);
+		
+
+		fclose(fp);
+
+		WinExec("c:\\Users\\PC\\Desktop\\Test\\Create_East_Windows.exe", SW_SHOW);
+	}
+}
+
+
+void CInterface4View::On32780()
+{
+	// TODO: 在此添加命令处理程序代码
+	CFileDialog dlg(TRUE, NULL, NULL, OFN_PATHMUSTEXIST | OFN_FILEMUSTEXIST, _T("文本文件(*.txt)|*.*"), this);
+
+	if (dlg.DoModal() == IDOK)
+	{
+		CString strText;
+		CString strTextOut;
+		strText = dlg.GetPathName();
+		strTextOut = strText.Left(strText.ReverseFind('\\'));
+		/*strTextOut = strText.Left(strText.ReverseFind('\\'));*/
+		strTextOut += _T("\\");
+		strTextOut = strTextOut + _T("xf.east");
+
+		const char* filename = "c:\\file4.txt";
+		FILE* fp = NULL;
+		errno_t err = 0;
+		err = fopen_s(&fp, filename, "wb");
+
+		char strText_ansi[120];
+		char strTextOut_ansi[120];
+		sprintf_s(strText_ansi, "%S", strText);
+		sprintf_s(strTextOut_ansi, "%S", strTextOut);
+		fwrite(strText_ansi, 120, 1, fp);
+		fwrite("\r\n", 1, 2, fp);
+		fwrite(strTextOut_ansi, 120, 1, fp);
+
+
+		fclose(fp);
+
+		WinExec("c:\\Users\\PC\\Desktop\\Test\\Create_East_Windows.exe", SW_SHOW);
+	}
+}
+
+
+void CInterface4View::On32777()
+{
+	// TODO: 在此添加命令处理程序代码
+	CFileDialog dlg(TRUE, NULL, NULL, OFN_PATHMUSTEXIST | OFN_FILEMUSTEXIST, _T("文本文件(*.txt)|*.*"), this);
+
+	if (dlg.DoModal() == IDOK)
+	{
+		CString strText;
+		CString strTextOut;
+		strText = dlg.GetPathName();
+
+		const char* filename = "c:\\file5.txt";
+		FILE* fp = NULL;
+		errno_t err = 0;
+		err = fopen_s(&fp, filename, "wb");
+
+		char strText_ansi[120];
+		char strTextOut_ansi[120];
+		sprintf_s(strText_ansi, "%S", strText);
+		sprintf_s(strTextOut_ansi, "%S", strTextOut);
+		fwrite(strText_ansi, 120, 1, fp);
+		fwrite("\r\n", 1, 2, fp);
+		fwrite(strTextOut_ansi, 120, 1, fp);
+
+
+		fclose(fp);
+
+		WinExec("c:\\Users\\PC\\Desktop\\Test\\Create_East_Windows.exe", SW_SHOW);
+	}
+}
+
+
+void CInterface4View::On32778()
+{
+	// TODO: 在此添加命令处理程序代码
+	CFileDialog dlg(TRUE, NULL, NULL, OFN_PATHMUSTEXIST | OFN_FILEMUSTEXIST, _T("文本文件(*.txt)|*.*"), this);
+
+	if (dlg.DoModal() == IDOK)
+	{
+		CString strText;
+		CString strTextOut;
+		strText = dlg.GetPathName();
+
+		const char* filename = "c:\\file6.txt";
+		FILE* fp = NULL;
+		errno_t err = 0;
+		err = fopen_s(&fp, filename, "wb");
+
+		char strText_ansi[120];
+		char strTextOut_ansi[120];
+		sprintf_s(strText_ansi, "%S", strText);
+		sprintf_s(strTextOut_ansi, "%S", strTextOut);
+		fwrite(strText_ansi, 120, 1, fp);
+		fwrite("\r\n", 1, 2, fp);
+		fwrite(strTextOut_ansi, 120, 1, fp);
+
+
+		fclose(fp);
+
+		WinExec("c:\\Users\\PC\\Desktop\\Test\\Create_East_Windows.exe", SW_SHOW);
+	}
+}
+
+
+void CInterface4View::On32779()
+{
+	// TODO: 在此添加命令处理程序代码
+	CFileDialog dlg(TRUE, NULL, NULL, OFN_PATHMUSTEXIST | OFN_FILEMUSTEXIST, _T("文本文件(*.txt)|*.*"), this);
+
+	if (dlg.DoModal() == IDOK)
+	{
+		CString strText;
+		CString strTextOut;
+		strText = dlg.GetPathName();
+		
+		const char* filename = "c:\\file7.txt";
+		FILE* fp = NULL;
+		errno_t err = 0;
+		err = fopen_s(&fp, filename, "wb");
+
+		char strText_ansi[120];
+		char strTextOut_ansi[120];
+		sprintf_s(strText_ansi, "%S", strText);
+		sprintf_s(strTextOut_ansi, "%S", strTextOut);
+		fwrite(strText_ansi, 120, 1, fp);
+		fwrite("\r\n", 1, 2, fp);
+		fwrite(strTextOut_ansi, 120, 1, fp);
+
+
+		fclose(fp);
+
+		WinExec("c:\\Users\\PC\\Desktop\\Test\\Create_East_Windows.exe", SW_SHOW);
+	}
 }

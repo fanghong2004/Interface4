@@ -28,4 +28,18 @@ public:
 	afx_msg void OnChange();
 	int SpinYear;
 	int SpinInterval;
+//	CString m_S_StartMonth;
+	int m_S_StartDate;
+	int m_S_StartTime;
+	int m_S_StartMonth;
+//	CString m_S_EndMonth;
+	int m_S_EndMonth;
+	int m_S_EndDate;
+	int m_S_EndTime;
+	int m_O_StartMonth;
+	int m_O_StartDate;
+	int m_O_StartTime;
+	int m_O_EndMonth;
+	int m_O_EndDate;
+	int m_O_EndTime;
 };

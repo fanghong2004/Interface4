@@ -50,9 +50,24 @@ void CMyPropertySheet::OnPageApply()
 	int Check6 = NULL;
 
 	char buf_SStart[20];
+	char buf_SStartMonth[20];
+	char buf_SStartDate[20];
+	char buf_SStartTime[20];
+
 	char buf_SEnd[20];
+	char buf_SEndMonth[20];
+	char buf_SEndDate[20];
+	char buf_SEndTime[20];
+
 	char buf_OStart[20];
+	char buf_OStartMonth[20];
+	char buf_OStartDate[20];
+	char buf_OStartTime[20];
+
 	char buf_OEnd[20];
+	char buf_OEndMonth[20];
+	char buf_OEndDate[20];
+	char buf_OEndTime[20];
 
 	char buf_SpinYear[5];
 	char buf_SpinInterval[5];
@@ -75,16 +90,48 @@ void CMyPropertySheet::OnPageApply()
 	ELLPROP ep;
 	GetParent()->SendMessage(WM_USER_PAGE_APPLY, 0, (LPARAM)&ep);
 	ep.nSStart = m_timeSetting.m_S_Start;
+	ep.nSStartMonth = m_timeSetting.m_S_StartMonth;
+	ep.nSStartDate = m_timeSetting.m_S_StartDate;
+	ep.nSStartTime = m_timeSetting.m_S_StartTime;
+
 	ep.nSEnd = m_timeSetting.m_S_End;
+	ep.nSEndMonth = m_timeSetting.m_S_EndMonth;
+	ep.nSEndDate = m_timeSetting.m_S_EndDate;
+	ep.nSEndTime = m_timeSetting.m_S_EndTime;
+
 	ep.nOStart= m_timeSetting.m_O_Start;
+	ep.nOStartMonth = m_timeSetting.m_O_StartMonth;
+	ep.nOStartDate = m_timeSetting.m_O_StartDate;
+	ep.nOStartTime = m_timeSetting.m_O_StartTime;
+
 	ep.nOEnd = m_timeSetting.m_O_End;
+	ep.nOEndMonth = m_timeSetting.m_O_EndMonth;
+	ep.nOEndDate = m_timeSetting.m_O_EndDate;
+	ep.nOEndTime = m_timeSetting.m_O_EndTime;
+
 	ep.nSpinYear = m_timeSetting.SpinYear;
 	ep.nSpinInterval = m_timeSetting.SpinInterval;
 
 	_itoa_s(ep.nSStart, buf_SStart, 10);
+	_itoa_s(ep.nSStartMonth, buf_SStartMonth, 10);
+	_itoa_s(ep.nSStartDate, buf_SStartDate, 10);
+	_itoa_s(ep.nSStartTime, buf_SStartTime, 10);
+
 	_itoa_s(ep.nSEnd, buf_SEnd, 10);
+	_itoa_s(ep.nSEndMonth, buf_SEndMonth, 10);
+	_itoa_s(ep.nSEndDate, buf_SEndDate, 10);
+	_itoa_s(ep.nSEndTime, buf_SEndTime, 10);
+
 	_itoa_s(ep.nOStart, buf_OStart, 10);
+	_itoa_s(ep.nOStartMonth, buf_OStartMonth, 10);
+	_itoa_s(ep.nOStartDate, buf_OStartDate, 10);
+	_itoa_s(ep.nOStartTime, buf_OStartTime, 10);
+
 	_itoa_s(ep.nOEnd, buf_OEnd, 10);
+	_itoa_s(ep.nOEndMonth, buf_OEndMonth, 10);
+	_itoa_s(ep.nOEndDate, buf_OEndDate, 10);
+	_itoa_s(ep.nOEndTime, buf_OEndTime, 10);
+
 	_itoa_s(ep.nSpinYear, buf_SpinYear, 10);
 	_itoa_s(ep.nSpinInterval, buf_SpinInterval, 10);
 
@@ -94,9 +141,25 @@ void CMyPropertySheet::OnPageApply()
 	strcat_s(buf_OEnd, ",");*/
 
 	fprintf(fp, "%s\r\n", buf_SStart);
+	fprintf(fp, "%s\r\n", buf_SStartMonth);
+	fprintf(fp, "%s\r\n", buf_SStartDate);
+	fprintf(fp, "%s\r\n", buf_SStartTime);
+
 	fprintf(fp, "%s\r\n", buf_SEnd);
+	fprintf(fp, "%s\r\n", buf_SEndMonth);
+	fprintf(fp, "%s\r\n", buf_SEndDate);
+	fprintf(fp, "%s\r\n", buf_SEndTime);
+
 	fprintf(fp, "%s\r\n", buf_OStart);
+	fprintf(fp, "%s\r\n", buf_OStartMonth);
+	fprintf(fp, "%s\r\n", buf_OStartDate);
+	fprintf(fp, "%s\r\n", buf_OStartTime);
+
 	fprintf(fp, "%s\r\n", buf_OEnd);
+	fprintf(fp, "%s\r\n", buf_OEndMonth);
+	fprintf(fp, "%s\r\n", buf_OEndDate);
+	fprintf(fp, "%s\r\n", buf_OEndTime);
+
 	fprintf(fp, "%s\r\n", buf_SpinYear);
 	fprintf(fp, "%s\r\n", buf_SpinInterval);
 	/*fwrite(buf_SStart, strlen(buf_SStart), 1, fp);

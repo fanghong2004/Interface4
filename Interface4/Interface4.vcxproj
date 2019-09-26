@@ -189,6 +189,7 @@
     <ClInclude Include="Interface4Doc.h" />
     <ClInclude Include="Interface4View.h" />
     <ClInclude Include="MainFrm.h" />
+    <ClInclude Include="PIFS.h" />
     <ClInclude Include="Resource.h" />
     <ClInclude Include="Result_Setting.h" />
     <ClInclude Include="stdafx.h" />
@@ -202,6 +203,7 @@
     <ClCompile Include="Interface4Doc.cpp" />
     <ClCompile Include="Interface4View.cpp" />
     <ClCompile Include="MainFrm.cpp" />
+    <ClCompile Include="PIFS.cpp" />
     <ClCompile Include="Result_Setting.cpp" />
     <ClCompile Include="stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
@@ -220,6 +222,8 @@
   <ItemGroup>
     <Image Include="res\Interface4.ico" />
     <Image Include="res\Interface4Doc.ico" />
+    <Image Include="res\ooopic_1565517114.ico" />
+    <Image Include="res\ooopic_1565592639.ico" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

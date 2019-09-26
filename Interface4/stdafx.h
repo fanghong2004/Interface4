@@ -26,9 +26,25 @@
 typedef struct tagELLPROP
 {
 	int nSStart;
+	int nSStartMonth;
+	int nSStartDate;
+	int nSStartTime;
+
 	int nSEnd;
+	int nSEndMonth;
+	int nSEndDate;
+	int nSEndTime;
+
 	int nOStart;
+	int nOStartMonth;
+	int nOStartDate;
+	int nOStartTime;
+
 	int nOEnd;
+	int nOEndMonth;
+	int nOEndDate;
+	int nOEndTime;
+
 	int nSpinYear;
 	int nSpinInterval;
 }ELLPROP;
@@ -46,6 +62,7 @@ typedef struct tagELLPROP
 #include <afxdlgs.h>
 #include <afxdlgs.h>
 #include <afxdlgs.h>
+#include <afxcontrolbars.h>
 
 
 

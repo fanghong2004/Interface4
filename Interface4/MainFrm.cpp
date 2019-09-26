@@ -64,3 +64,13 @@ void CMainFrame::OnAppExit()
 	// TODO: 在此添加命令处理程序代码
 	exit(0);
 }
+
+
+BOOL CMainFrame::OnCreateClient(LPCREATESTRUCT lpcs, CCreateContext* pContext)
+{
+	// TODO: 在此添加专用代码和/或调用基类
+	SetClassLong(m_hWnd, GCL_HICON, (LONG)AfxGetApp()->LoadIconW(IDI_ICON_TITLE));
+
+	SetTitle(TEXT("版本1.0"));
+	return CFrameWnd::OnCreateClient(lpcs, pContext);
+}

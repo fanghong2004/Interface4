@@ -36,6 +36,7 @@ protected:
 
 public:
 	afx_msg void OnAppExit();
+	virtual BOOL OnCreateClient(LPCREATESTRUCT lpcs, CCreateContext* pContext);
 };
 
 
